@@ -1,0 +1,18 @@
+$white: #ffffff;
+
+$theme-colors: (
+    "light": #cce4fa,
+    "dark": #071229,
+    "primary": #384355,
+    "secondary": #ab3d6a,
+    "info": #ecbe95,
+    "success": #36a766,
+    "warning": #e4cc35,
+    "danger": #f1211d,
+);
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+.btn-primary.disabled {
+    @include button-variant(black, blue);
+}
