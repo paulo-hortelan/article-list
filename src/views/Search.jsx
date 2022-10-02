@@ -20,8 +20,7 @@ export default (props) => {
     const [webCrawlers, setWebCrawlers] = useState([]);
 
     useEffect(() => {
-        getWebCrawlers();
-        getDbArticles();
+        getWebCrawlers().then(() => getDbArticles());
     }, []);
 
     const getDbArticles = () => {
@@ -49,33 +48,31 @@ export default (props) => {
 
     async function getWebCrawlers() {
         const list = await getWebCrawlersList();
+        var wcObj = [];
 
         for (let item of list) {
-            var articles = await getWcArticles(item.nome);
-            setWebCrawlers(updateWebCrawlers(item.nome, articles));
+            let articles = await getWcArticles(item.nome);
+            wcObj.push({ nome: item.nome, articles: articles });
         }
+
+        setWebCrawlers((prev) => [...prev, ...wcObj]);
     }
 
-    const handleEdit = (article) => {
+    function handleAdd(article) {
         const isLink = isValidHttpUrl(article.link);
         if (article.titulo !== "" && isLink)
             addArticle(article).then(() => getDbArticles());
-    };
+    }
 
     return (
         <div>
             <If test={webCrawlers && dbArticle}>
-                {webCrawlers.map((index) => {
-                    return (
-                        <AccMain
-                            key={`AccMain-${index.toString()}`}
-                            index={index}
-                            webCrawlers={webCrawlers}
-                            dbArticle={dbArticle}
-                            handleEdit={handleEdit}
-                        />
-                    );
-                })}
+                <AccMain
+                    key={`AccMain`}
+                    webCrawlers={webCrawlers}
+                    dbArticle={dbArticle}
+                    handleAdd={handleAdd}
+                />
             </If>
         </div>
     );

@@ -2,10 +2,6 @@ import axios from "axios";
 
 const URL = "https://article-list-api.herokuapp.com/articles";
 
-// const axiosRequest = axios.create({
-//     baseUrl: "https://article-list-api.herokuapp.com/articles",
-// });
-
 export const getArticles = () => {
     return axios.get(`${URL}`).then((resp) => resp.data);
 };
@@ -24,6 +20,5 @@ export const editArticle = (article) => {
 };
 
 export const deleteArticle = (article) => {
-    console.log(article.id);
     return axios.delete(`${URL}/${article.id}`);
 };

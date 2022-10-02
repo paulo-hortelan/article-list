@@ -15,7 +15,7 @@ export default (props) => {
                     index={index}
                     articles={site.articles}
                     dbArticleList={props.dbArticle.list}
-                    handleEdit={props.handleEdit}
+                    handleAdd={props.handleAdd}
                 />
             </AccItem>
         ));
@@ -23,7 +23,7 @@ export default (props) => {
 
     // accordion > items > articles
     return (
-        <div className="accordion" id={`accordion${props.index}`}>
+        <div className="accordion" id="accordion">
             {renderItems()}
         </div>
     );
