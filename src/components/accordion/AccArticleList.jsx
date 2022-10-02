@@ -5,14 +5,14 @@ export default (props) => {
     const renderRows = () => {
         const articles = props.articles || [];
 
-        return articles.map((article) => {
+        return articles.map((article, index) => {
             var exists = props.dbArticleList.some(
                 ({ titulo, link }) =>
                     titulo === article.titulo && link === article.link
             );
 
             return (
-                <tr>
+                <tr key={index}>
                     <td>{article.titulo}</td>
                     <td>
                         <a
@@ -36,7 +36,7 @@ export default (props) => {
                                 buttonSize="sm"
                                 iconSize="1x"
                                 onClick={() =>
-                                    props.handleEdit(article)
+                                    props.handleAdd(article)
                                 }></IconButton>
                         )}
                     </td>
@@ -50,7 +50,13 @@ export default (props) => {
             id={`collapse${props.index}`}
             className="accordion-collapse collapse"
             aria-labelledby={`heading${props.index}`}
-            data-bs-parent={`#accordion${props.index}`}>
+            data-bs-parent="#accordion"
+            style={{
+                tableLayout: "fixed",
+                overflowY: "scroll",
+                overflowX: "auto",
+                maxHeight: "300px",
+            }}>
             <div className="accordion-body">
                 <table className="table">
                     <tbody>{renderRows()}</tbody>

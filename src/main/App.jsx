@@ -1,6 +1,6 @@
 import React from "react";
 import NavBar from "../components/NavBar";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 export default (props) => {
     return (

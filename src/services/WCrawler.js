@@ -2,8 +2,15 @@ import axios from "axios";
 
 const URL = "https://article-list-api.herokuapp.com/webcrawlers";
 
-export const getWebCrawlersList = () => {
-    return axios.get(URL).then((resp) => resp.data);
+const asyncTimeout = (ms) => {
+    return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+    });
+};
+
+export const getWebCrawlersList = async () => {
+    const resp = await axios.get(URL);
+    return resp.data;
 };
 
 export const getWebCrawlerArticles = (name) => {
