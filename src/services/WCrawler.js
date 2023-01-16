@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "https://article-list-api.herokuapp.com/webcrawlers";
+const URL = "https://article-list-api.onrender.com/webcrawlers";
 
 const asyncTimeout = (ms) => {
     return new Promise((resolve) => {
