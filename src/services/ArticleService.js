@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "https://article-list-api.herokuapp.com/articles";
+const URL = "https://article-list-api.onrender.com";
 
 export const getArticles = () => {
     return axios.get(`${URL}`).then((resp) => resp.data);
